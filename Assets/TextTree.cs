@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 public class TextTree : MonoBehaviour {
-	[SerializeField] TextThing[] text;
-	public int currentNumber = 0;
+	[SerializeField] public TextThing[] text;
+
 	
-	public string GetString(){
-		var t = text[currentNumber].text;
-		currentNumber ++;
-		return t;
-	}
+	public TextTree nextTree;
+
 	
 }
 
@@ -20,7 +18,19 @@ public class TextThing{
 
 	public UnityEvent OnStart, OnLeave;
 	
-	public TextTree nextTree;
+	public Button[] Buttons;
+	public TextType type = TextType.TextOnly;
 	
+	public void ShowButtons(){
+		foreach(var b in Buttons){
+			b.gameObject.SetActive(true);
+		}
+	}
+}
+public enum TextType{
+	TextOnly = 0,
+	Button = 1,
+
+	OnCustomEvent = 3
 	
 }
