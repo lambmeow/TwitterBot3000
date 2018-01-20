@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 public class TextTree : MonoBehaviour {
-	public TextThing[] text;
-	    
+	[SerializeField] TextThing[] text;
+	public int currentNumber = 0;
+	
+	public string GetString(){
+		var t = text[currentNumber].text;
+		currentNumber ++;
+		return t;
+	}
+	
 }
+
 [System.Serializable]
 public class TextThing{
 	public string text;
 
-	public UnityEvent e;
-
+	public UnityEvent OnStart, OnLeave;
+	
+	public TextTree nextTree;
 	
 	
 }
